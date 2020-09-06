@@ -6,6 +6,9 @@ export const translate = {
             'name': 'Тест реакции!',
             'text': 'Нажми кнопку "Старт", когда будешь готов',
             'startButton': 'Старт'
+        },
+        'reaction-test': {
+            'explanation': 'Нажми, когда экран станет красным'
         }
     },
     'en': {
@@ -15,6 +18,9 @@ export const translate = {
             'name': 'Reaction test!',
             'text': 'Click "Start" button, when you are ready',
             'startButton': 'Start'
+        },
+        'reaction-test': {
+            'explanation': 'Press, when the screen turns red'
         }
     },
 }

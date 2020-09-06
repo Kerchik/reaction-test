@@ -1,25 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {translate} from '../redux/translate'
 import {connect} from 'react-redux'
 import s from './MainContent.module.css'
+import Button from 'react-bootstrap/Button';
+import ReactionTest from './ReactionTest';
+import {changeBackground} from '../redux/reactionTestReducer'
 
-const mapStateToProps = ({language}) => {
+const mapStateToProps = ({language, reactionTest}) => {
     return {
         language: language.language,
+        background: reactionTest.backgroundColorRed
     }
 }
 
-const MainContent = ({language}) => {
+const MainContent = ({language, background, changeBackground}) => {
+    const reactionTestClick = () => {
+        if (!showReactionTest) {
+            return
+        }
+    }
+    const [showReactionTest, setShowReactionTest] = useState(false)
+    const enableReactionTest = () => {
+        setShowReactionTest(true)
+    }
     return (
-        <div className={s.main}>
+        <div onClick={reactionTestClick} className={!background ? s.main : s.mainRed}>
             <div>
-                <h2 className={s.textWhite}>{translate[language]['main']['name']}</h2>
+                {!showReactionTest 
+                ? <><h2 className={s.textWhite}>{translate[language]['main']['name']}</h2>
                 <h3 className={s.textWhite}>{translate[language]['main']['text']}</h3>
-                <button>{translate[language]['main']['startButton']}</button>
+                <Button variant="light" onClick={enableReactionTest}>{translate[language]['main']['startButton']}</Button> </>
+                : <ReactionTest language={language} changeBackground={changeBackground}/>}
             </div>
         </div>
     )
 }
 
-const MainContentContainer = connect(mapStateToProps, null)(MainContent)
+const MainContentContainer = connect(mapStateToProps, {changeBackground})(MainContent)
 export default MainContentContainer;

@@ -5,6 +5,13 @@
     justify-content: center;
     background: #4287f5;
 }
+.mainRed {
+    height: 92%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: red;
+}
 .textWhite {
     color: #f2f4f7;
 }
