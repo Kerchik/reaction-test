@@ -6,7 +6,7 @@ const ReactionTest = ({language, changeBackground}) => {
     useEffect(() => {
         const time = Math.random() * (8000 - 1000) + 3000
         setTimeout(() => {
-            changeBackground(true)
+            changeBackground(true, Date.now())
         }, time)
     }, [])
     return (

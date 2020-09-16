@@ -1,6 +1,7 @@
 const initialState = {
     reactionTestOn: false,
-    backgroundColorRed: false 
+    backgroundColorRed: false,
+    startTime: null
 }
 
 const reactionTestReducer = (state = initialState, action) => {
@@ -10,7 +11,11 @@ const reactionTestReducer = (state = initialState, action) => {
         }
         case 'RED_BACKGROUND': {
             console.log(action.background)
-            return {...state, backgroundColorRed: action.background}
+            return {
+                ...state,
+                backgroundColorRed: action.background,
+                startTime: action.startTime
+                }
         }
         default: {
             return initialState
@@ -21,8 +26,8 @@ const reactionTestReducer = (state = initialState, action) => {
 export const changeLanguage = (reactionTestOn) => {
     return {type: 'HANDLE_REACTION_TEST', reactionTestOn}
 }
-export const changeBackground = (background) => {
-    return {type: 'RED_BACKGROUND', background}
+export const changeBackground = (background, startTime) => {
+    return {type: 'RED_BACKGROUND', background, startTime}
 }
 
 export default reactionTestReducer

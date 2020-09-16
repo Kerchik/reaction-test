@@ -9,15 +9,22 @@ import {changeBackground} from '../redux/reactionTestReducer'
 const mapStateToProps = ({language, reactionTest}) => {
     return {
         language: language.language,
-        background: reactionTest.backgroundColorRed
+        background: reactionTest.backgroundColorRed,
+        startTime: reactionTest.startTime,
     }
 }
 
-const MainContent = ({language, background, changeBackground}) => {
+const MainContent = ({language, background, changeBackground, startTime}) => {
     const reactionTestClick = () => {
+        const clickTime = Date.now()
         if (!showReactionTest) {
             return
         }
+        if (!background) {
+            alert('too early')
+            return
+        }
+        alert(clickTime - startTime)
     }
     const [showReactionTest, setShowReactionTest] = useState(false)
     const enableReactionTest = () => {
